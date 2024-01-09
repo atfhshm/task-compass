@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/atfhshm/task-compass/config"
+)
 
 func main() {
-	fmt.Println("hell, world")
+	conf, err := config.NewConfig()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v\n", conf)
 }
