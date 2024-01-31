@@ -24,6 +24,7 @@
 *.dylib
 # Test binary, built with `go test -c`
 *.test
+coverage
 # air live reload
 tmp/
 .air.toml

@@ -1,24 +1,35 @@
 package config
 
 import (
-	"github.com/stretchr/testify/assert"
-	"testing"
+	"log"
+
+	"github.com/joho/godotenv"
+	"github.com/stretchr/testify/suite"
 )
 
-func TestNewDatabaseConfig(t *testing.T) {
+type ConfigTestSuite struct {
+	suite.Suite
+}
+
+func (s *ConfigTestSuite) SetupSuite() {
+	log.Println("loading environment variable")
+	godotenv.Load()
+}
+
+func (s *ConfigTestSuite) TestNewDatabaseConfig() {
 	dbConfig, err := NewDatabaseConfig()
-	assert.Nil(t, err, err)
-	assert.NotNil(t, dbConfig)
+	s.Nil(err, err.Error())
+	s.NotNil(dbConfig)
 }
 
-func TestNewServerConfig(t *testing.T) {
+func (s *ConfigTestSuite) TestNewServerConfig() {
 	serverConfig, err := NewServerConfig()
-	assert.Nil(t, err, err)
-	assert.NotNil(t, serverConfig)
+	s.Nil(err, err.Error())
+	s.NotNil(serverConfig)
 }
 
-func TestNewConfig(t *testing.T) {
+func (s *ConfigTestSuite) TestNewConfig() {
 	conf, err := NewConfig()
-	assert.Nil(t, err, err.Error())
-	assert.NotNil(t, conf)
+	s.Nil(err, err.Error())
+	s.NotNil(conf)
 }
